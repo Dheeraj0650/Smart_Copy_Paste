@@ -23,6 +23,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func AR_view(_ text:String){
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = text
         let text = SCNText(string: text, extrusionDepth: 2)
         let material = SCNMaterial()
         material.diffuse.contents = UIColor.white
