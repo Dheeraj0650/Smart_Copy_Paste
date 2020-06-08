@@ -13,21 +13,26 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
-    
+    var text:String = "hello"
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Set the view's delegate
         sceneView.delegate = self
-        
-        // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
-        
-        // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        
-        // Set the scene to the view
-        sceneView.scene = scene
+        AR_view(text)
+    }
+    
+    func AR_view(_ text:String){
+        let text = SCNText(string: text, extrusionDepth: 2)
+        let material = SCNMaterial()
+        material.diffuse.contents = UIColor.white
+        text.materials = [material]
+        let node = SCNNode()
+        node.position = SCNVector3(x:-0.2, y:0.02, z:-0.1)
+        node.scale = SCNVector3(x:0.001, y:0.001, z:0.001)
+        node.geometry = text
+        sceneView.scene.rootNode.addChildNode(node)
+        sceneView.autoenablesDefaultLighting = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

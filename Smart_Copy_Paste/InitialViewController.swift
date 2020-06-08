@@ -23,8 +23,7 @@ class InitialViewController: UIViewController,VNDocumentCameraViewControllerDele
     
     @IBAction func Camera(_ sender: Any) {
         
-            
-        
+        present(document, animated: true)
         
     }
     func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
