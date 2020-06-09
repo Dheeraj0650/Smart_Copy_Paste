@@ -14,6 +14,22 @@
                     <view key="view" contentMode="scaleToFill" id="Fts-R0-OLh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pwV-4J-7Es">
+                                <rect key="frame" x="204" y="299" width="71" height="72"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="camera" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                </state>
+                                <connections>
+                                    <action selector="camera_two:" destination="Nf0-jW-LKz" eventType="touchUpInside" id="f3R-W6-4VU"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MuS-tK-AEk">
+                                <rect key="frame" x="20" y="433" width="374" height="326"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="8RD-bw-va9"/>
                     </view>
@@ -25,6 +41,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="image_view" destination="MuS-tK-AEk" id="laT-5c-fJl"/>
                         <segue destination="BV1-FR-VrT" kind="show" identifier="PresentTextInARView" id="PPN-mY-FTB"/>
                     </connections>
                 </viewController>
@@ -81,4 +98,7 @@
             <point key="canvasLocation" x="-623.1884057971015" y="136.60714285714286"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="camera" catalog="system" width="64" height="48"/>
+    </resources>
 </document>

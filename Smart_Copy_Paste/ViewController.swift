@@ -9,34 +9,65 @@
 import UIKit
 import SceneKit
 import ARKit
+import Alamofire
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
-    var text:String = "hello"
+    var image:UIImage?
+    var text:String = ""
+    var flag = true
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Set the view's delegate
         sceneView.delegate = self
-        AR_view(text)
+        if !flag{
+           text_AR_view(text)
+        }
+        else{
+           image_AR_view()
+        }
     }
+   
+    func image_AR_view(){
+        let height = image!.size.height
+        let width = image!.size.width
+        let pasteboard = UIPasteboard.general
+        pasteboard.image = image!
+        print(width/1000,height/1000)
+        let planeGeometry = SCNPlane(width:width/1000,height: height/1000)
+        let material = SCNMaterial()
+        material.diffuse.contents = image!
+        planeGeometry.materials = [material]
+        let node = SCNNode()
+        node.position = SCNVector3(x:0.05, y:0.05, z:-0.7)
+        node.geometry = planeGeometry
+        sceneView.scene.rootNode.addChildNode(node)
+        sceneView.autoenablesDefaultLighting = true
+        
+    }
+
     
-    func AR_view(_ text:String){
+    func text_AR_view(_ text:String){
+        
         let pasteboard = UIPasteboard.general
         pasteboard.string = text
         let text = SCNText(string: text, extrusionDepth: 2)
         let material = SCNMaterial()
-        material.diffuse.contents = UIColor.white
+        material.diffuse.contents = UIColor.systemBlue
         text.materials = [material]
         let node = SCNNode()
-        node.position = SCNVector3(x:-0.2, y:0.02, z:-0.1)
+        node.position = SCNVector3(x:0.0155, y:0.0, z:-0.2)
         node.scale = SCNVector3(x:0.001, y:0.001, z:0.001)
         node.geometry = text
         sceneView.scene.rootNode.addChildNode(node)
         sceneView.autoenablesDefaultLighting = true
+        
     }
     
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
