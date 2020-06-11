@@ -10,17 +10,32 @@ import UIKit
 import Vision
 import VisionKit
 import Alamofire
-class InitialViewController: UIViewController,VNDocumentCameraViewControllerDelegate {
+class InitialViewController: UIViewController,VNDocumentCameraViewControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate {
     var flag = true
     var vision = VNRecognizeTextRequest(completionHandler: nil)
     var document = VNDocumentCameraViewController()
     var text_String = ""
     var images = [CGImage]()
     var image:UIImage?
+ 
+
+    @IBOutlet weak var image_detection: UIButton!
+    @IBOutlet weak var text_detection: UIButton!
+    @IBOutlet weak var voice_detection: UIButton!
     @IBOutlet weak var image_view: UIImageView!
+
+    @IBOutlet weak var buttom_View: UIView!
+    @IBOutlet weak var collection_view: UICollectionView!
+    var options:[String] = ["Image","Text","Voice"]
     override func viewDidLoad() {
+        collection_view.dataSource = self
+        collection_view.delegate = self
         super.viewDidLoad()
+        collection_view.register(UINib(nibName: "CollectionViewCell", bundle:nil), forCellWithReuseIdentifier: "CollectionViewCell")
         document.delegate = self
+        buttom_View.layer.cornerRadius = 60
+        buttom_View.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner]
+      
         // Do any additional setup after loading the view.
     }
     @IBAction func camera_two(_ sender: Any) {
@@ -50,8 +65,9 @@ class InitialViewController: UIViewController,VNDocumentCameraViewControllerDele
             
         }
         else{
-            
+            self.document.dismiss(animated: true, completion: nil)
             detect_Text(images)
+            
         }
          
          
@@ -78,7 +94,7 @@ class InitialViewController: UIViewController,VNDocumentCameraViewControllerDele
                         .responseJSON { imageResponse in
                                        guard let imageData = imageResponse.data,
                                            let image = UIImage(data: imageData) else { return }
-                            self.image_view.image = image
+                           
                             DispatchQueue.main.async {
                                 self.image = image
                                 self.performSegue(withIdentifier: "PresentTextInARView", sender: self)
@@ -123,7 +139,7 @@ class InitialViewController: UIViewController,VNDocumentCameraViewControllerDele
                }
                DispatchQueue.main.async {
                    
-                self.document.dismiss(animated: true, completion: nil)
+                
                 self.performSegue(withIdentifier: "PresentTextInARView", sender: (Any).self)
                 
                 
@@ -144,6 +160,46 @@ class InitialViewController: UIViewController,VNDocumentCameraViewControllerDele
                       text_String += "\n\n"
             }
        
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return options.count
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
+        
+        cell.background_view.backgroundColor = #colorLiteral(red: 0.2377739251, green: 0.1985786557, blue: 0.2463587224, alpha: 1)
+        cell.layer.cornerRadius = 15
+        cell.label.text = options[indexPath.row]
+        cell.label.textColor = #colorLiteral(red: 0.8173074126, green: 0.770793736, blue: 0.2941446602, alpha: 1)
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
+        cell.background_view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        cell.label.textColor = #colorLiteral(red: 0.2377739549, green: 0.1985788047, blue: 0.2505975366, alpha: 1)
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { timer in
+             cell.background_view.backgroundColor = #colorLiteral(red: 0.2377739251, green: 0.1985786557, blue: 0.2463587224, alpha: 1)
+             cell.label.textColor = #colorLiteral(red: 0.8173074126, green: 0.770793736, blue: 0.2941446602, alpha: 1)
+            if indexPath.row == 0{
+                self.images = []
+                self.flag = true
+                self.present(self.document, animated: true)
+            
+            }
+            if indexPath.row == 1{
+                self.images = []
+                self.text_String = ""
+                self.flag = false
+                self.present(self.document, animated: true)
+            
+            }
+            timer.invalidate()
+        }
+        
     }
     
     /*
