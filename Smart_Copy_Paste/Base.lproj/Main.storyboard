@@ -16,18 +16,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="img2" translatesAutoresizingMaskIntoConstraints="NO" id="zsZ-L5-mQR">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="411"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="img4" translatesAutoresizingMaskIntoConstraints="NO" id="zsZ-L5-mQR">
+                                <rect key="frame" x="0.0" y="16" width="375" height="411"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RD1-1D-gwE">
-                                <rect key="frame" x="0.0" y="361" width="375" height="306"/>
+                                <rect key="frame" x="0.0" y="425" width="375" height="242"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7iu-UE-9Wy">
-                                        <rect key="frame" x="80" y="46" width="214" height="234"/>
+                                        <rect key="frame" x="80" y="8" width="214" height="234"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.97647058819999999" green="0.78039215689999997" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" red="0.23529411759999999" green="0.25098039220000001" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="40" minimumInteritemSpacing="40" id="htY-Hn-geT">
                                             <size key="itemSize" width="197" height="241"/>
@@ -45,7 +45,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="clh-2q-QXc">
-                                                            <rect key="frame" x="2" y="0.0" width="172" height="231"/>
+                                                            <rect key="frame" x="2" y="0.0" width="162" height="187"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dS1-2r-SmM">
@@ -65,10 +65,10 @@
                                         </cells>
                                     </collectionView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.94509803920000002" green="0.78823529410000004" blue="0.67843137249999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.23529411759999999" green="0.25098039220000001" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.89019607840000003" green="0.93725490199999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="8RD-bw-va9"/>
                     </view>
                     <navigationItem key="navigationItem" id="HKO-ON-a0v"/>
@@ -132,6 +132,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="img2" width="626" height="477"/>
+        <image name="img4" width="700" height="466.5"/>
     </resources>
 </document>
